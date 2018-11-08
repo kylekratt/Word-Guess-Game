@@ -73,49 +73,66 @@ var wordGame ={
         'Zelda',
         'Zero Suit Samus'
     ],
-    guesses = 10,
-    wins = 0,
-    guessedLetters = {},
-    word,
-    hiddenword = {},
+    guesses : 10,
+    wins : 0,
+    guessedLetters : [],
+    word : "",
+    gameword : "",
+    hiddenWord : [],
     hiddenword: function(){
+        this.hiddenWord = [];
         for(var i=0;i<this.word.length;i++){
-            if(/a-z/i.test(this.word.charAt(i)))
-            hiddenword[i]=_;
+            if(/[a-z]/i.test(this.word.charAt(i)))
+            this.hiddenWord[i]="_";
             else
-            hiddenword[i]=this.word.charAt(i);
+            this.hiddenWord[i]=this.word.charAt(i);
+            console.log(this.hiddenWord[i])
         }
     },
     setword: function(){
         this.word = this.wordList[Math.floor(Math.random() * this.wordList.length)];
     },
     guess: function(c){
-        this.guessedLetters.push(c);
-        var wordCorrect = {};
+        var wordCorrect = [];
         for (var i=0;i<this.word.length;i++){
-            if(this.word[i]==c){
+            if(/[a-z]/i.test(c)==false){
+                alert("Please enter a valid character from a-z.")
+                return;
+            }
+            else if(this.word[i].toLowerCase()==c.toLowerCase()){
                 wordCorrect.push(i);
             }
         }
-        if (wordCorrect.length = 0){
+        this.guessedLetters.push(c);
+        if (wordCorrect.length == 0){
             this.guesses--;
         }
         else {
             for (var j=0;j<wordCorrect.length;j++){
-                hiddenword[wordCorrect[j]] = word.charAt(wordCorrect[j]);
+                this.hiddenWord[wordCorrect[j]] = this.word.charAt(wordCorrect[j]);
             }
         }
+        console.log(this.hiddenWord);
     },
     win: function(){
         this.wins++;
+        this.new();
+    },
+    new: function(){
         this.guesses=10;
         this.guessedLetters = {};
         this.setword();
         this.hiddenword();
+        this.display();
     },
     display: function(){
-        document.getElementById(guesses)=this.guesses;
-        document.getElementById(wins)=this.wins;
-        document.getElementById(guessed)=this.guessedLetters.toString();
+        gameword = '';
+        for (var i=0;i<this.hiddenWord.length;i++){
+        this.gameword+=this.hiddenWord[i];}
+        document.getElementById("word").innerHTML=this.gameword;
+        document.getElementById("guesses").innerHTML=this.guesses;
+        document.getElementById("wins").innerHTML=this.wins;
+        document.getElementById("guessed").innerHTML=this.guessedLetters;
     }
 }
+wordGame.new();
