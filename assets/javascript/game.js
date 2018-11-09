@@ -91,7 +91,7 @@ var wordGame = {
         this.word = this.wordList[Math.floor(Math.random() * this.wordList.length)];
     },
     guess: function (c) {
-        if (/[a-z]/i.test(c) == false) {
+        if ((/[a-z]/i.test(c) == false)||(c.toLowerCase()=="enter")) {
             alert("Please enter a valid character from a-z.")
             return;
         }
