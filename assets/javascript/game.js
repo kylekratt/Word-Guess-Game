@@ -120,14 +120,15 @@ var wordGame = {
                 this.hiddenWord[wordCorrect[j]] = this.word.charAt(wordCorrect[j]);
             }
             if (this.hiddenWord.indexOf("_") == -1) {
+                this.wins++;
                 this.display();
+                
                 setTimeout(this.win,200);
             }
         }
         this.display();
     },
     win: function () {
-        this.wins++;
         alert("You won!");
         wordGame.newgame();
     },
