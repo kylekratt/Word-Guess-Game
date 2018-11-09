@@ -1,0 +1,48 @@
+@font-face {
+    font-family: supersmash;
+    src: url(../supersmash.ttf);
+}
+#word{
+    font-family: supersmash;
+    font-weight: normal;
+    margin-top:50px;
+    margin-bottom:0;
+    letter-spacing: 4px;
+    word-spacing: 15px;
+    font-size: 100px;
+    color: tomato;
+    text-align: center;
+}
+.banner{
+    width:100%;
+    height:auto;
+    z-index: 1;
+    float: center;
+}
+body{
+    width:100%;
+    background-image: url("../images/SSBUBackground.png");
+    margin:0px;
+}
+.info{
+    color:white;
+    font-family: supersmash;
+    margin:auto;
+    margin-top:6px;
+    text-align: center;
+}
+#title{
+    color: white;
+    font-family: supersmash;
+    text-align: center;
+    font-size: 3em;
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+#guesses{
+    margin-right: 50px;
+}
+#guessed{
+    box-sizing: border-box;
+    min-height: 1.25em;
+}

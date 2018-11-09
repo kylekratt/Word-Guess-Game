@@ -107,11 +107,12 @@ var wordGame = {
             }
         }
         this.guessedLetters.push(c);
+        this.guessedLetters.sort();
         if (wordCorrect.length == 0) {
             this.guesses--;
             if (this.guesses == 0) {
                 alert("You ran out of guesses. The correct answer was " + this.word);
-                this.new();
+                wordGame.newgame();
             }
         }
         else {
@@ -120,8 +121,6 @@ var wordGame = {
             }
             if (this.hiddenWord.indexOf("_") == -1) {
                 this.display();
-                console.log(this.hiddenWord);
-                console.log(this.gameword);
                 setTimeout(this.win,200);
             }
         }
@@ -130,9 +129,9 @@ var wordGame = {
     win: function () {
         this.wins++;
         alert("You won!");
-        this.new();
+        wordGame.newgame();
     },
-    new: function () {
+    newgame: function () {
         this.guesses = 6;
         this.guessedLetters = [];
         this.hiddenWord = [];
@@ -151,9 +150,9 @@ var wordGame = {
         document.getElementById("guessed").innerHTML = this.guessedLetters;
     }
 }
-wordGame.new();
+wordGame.newgame();
 document.onkeyup = function (event) {
     var guess = event.key;
     wordGame.guess(guess);
-    
+
 }
